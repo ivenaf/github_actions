@@ -1,0 +1,32 @@
+
+name: Pytest & flake8 control Push
+on: push
+
+jobs:
+	qa: 
+		name: Check tests
+		runs-on_ ubuntu-20.04
+
+	steps:
+		- name: Checkout on master		 #checkout of repo
+		  uses: actions/checkout@v3		 #setup python on vm
+	
+		- name: Set up Python			 #installation of the packages
+		  uses: actions/setup-python@master	 #running our tests
+		  with: 
+			python-version: "3.x"		# check the PEP 8 convention
+
+
+	# install 2 packages and run them
+		- name: Install pytest and flake8
+		  run: |
+			pip instal pytest
+			pip install flake8
+
+		- name: Run tests
+		  run: | 
+			pytest
+
+		- name: Run flake8
+		  uses: py-actions/flake8@v2
+
